@@ -13,7 +13,7 @@ Edit
   <div class="form-group row">
     <label for="username" class="col-sm-2 col-form-label">Username</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" >
+      <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="{{$users->email}}">
     </div>
   </div>
   <div class="form-group row">
@@ -65,7 +65,7 @@ Edit
     </div>
   </div>
   
-  <button class="btn btn-primary float-right" type="submit">Tambah Data</button>
+  <button class="btn btn-primary float-right" type="submit">Update Data</button>
   
 </form>
 

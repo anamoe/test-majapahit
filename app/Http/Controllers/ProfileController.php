@@ -5,11 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\profile;
 use App\Models\User;
+use Auth;
 
 class ProfileController extends Controller
 {
     //
-
+    
+    
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $users = profile::with('User')->get();
@@ -61,14 +68,45 @@ class ProfileController extends Controller
     }
 
     public function edit_profile($id){
-        $users = profile::where('user_id',Auth::user()->id)->with('User')->first();
-        return view('index',compact('users'));
+        $users = profile::where('id',1)->with('User')->first();
+        // return view('edit',compact('users'));
+
+        $users;
 
     }
 
     public function update_profile($id ,Request $request){
-        $users = profile::where('user_id',Auth::user()->id)->update($request->all());
-        return view('index')->with('succes', 'Update Porfil Sukses');
+        
+        $request->validate([
+    		'email' => 'required',
+    		'username' => 'required',
+    		'password' => 'required',
+    		'alamat_ktp'=> 'required',
+        	'pekerjaan'=> 'required',
+        	'nama_lengkap'=> 'required',
+        	'pendidikan_terakhir'=> 'required',
+        	'nama_lengkap'=> 'required',
+        	'nomor_telepon'=> 'required',
+
+		]);
+     
+       
+        User::where('id',$id)->update([
+        	'email' => $request->email,
+    		'name' => $request->username,
+    		'password' => bcrypt($request->password)])
+    		->id;
+
+        profile::where('user_id',$id)->update([
+         		'alamat_ktp'=>$request->email,
+        		'pekerjaan'=>$request->pekerjaan,
+        		'nama_lengkap'=>$request->nama_lengkap,
+        		'pendidikan_terakhir'=>$request->pendidikan_terakhir,
+        		'nama_lengkap'=>$request->nama_lengkap,
+        		'nomor_telepon'=>$request->nomor_telepon,
+        ]);
+        
+        return redirect('/')->with('succes', 'Update Porfil Sukses');
 
     }
 

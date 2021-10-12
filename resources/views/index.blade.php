@@ -26,6 +26,7 @@
       <th scope="col">Pendidikan Terakhir</th>
       <th scope="col">Nomor Telepon</th>
       <th scope="col">Hapus</th>
+      <th scope="col">Edit</th>
     </tr>
   </thead>
   <tbody>
@@ -40,7 +41,7 @@
       <td>{{$profile->pendidikan_terakhir}}</td>
       <td>{{$profile->nomor_telepon}}</td>
       <td><a href="{{url('hapus/'.$profile->User->id)}}" class="btn btn-sm btn-danger">Hapus</a></td>
-      <td><a href="{{url('edit/'.$profile->User->id)}}" class="btn btn-sm btn-danger">Edit</a></td>
+      <td><a href="{{url('edit/'.$profile->User->id)}}" class="btn btn-sm btn-primary">Edit</a></td>
 
     </tr>
     
