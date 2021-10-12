@@ -24,8 +24,8 @@
   @foreach($users as $profile)
     <tr>
       <th scope="row">{{$loop->iteration}}</th>
-      <td>{{$profile->Users->username}}</td>
-      <td>{{$profile->Users->email}}</td>
+      <td>{{$profile->User->name}}</td>
+      <td>{{$profile->User->email}}</td>
       <td>{{$profile->alamat_ktp}}</td>
       <td>{{$profile->pekerjaan}}</td>
       <td>{{$profile->nama_lengkap}}</td>
