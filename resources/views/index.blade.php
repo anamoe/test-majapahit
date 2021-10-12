@@ -7,6 +7,13 @@
 <a href="{{url('tambah')}}" class="btn btn-primary">Tambah</a>
 </div>
 <div class="card-body">
+
+@if(session()->has('succes'))
+<div class="alert alert-success" role="alert">
+  {{session()->get('succes')}}
+</div>
+@endif
+
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -18,6 +25,7 @@
       <th scope="col">Nama Lengkap</th>
       <th scope="col">Pendidikan Terakhir</th>
       <th scope="col">Nomor Telepon</th>
+      <th scope="col">Hapus</th>
     </tr>
   </thead>
   <tbody>
@@ -31,6 +39,8 @@
       <td>{{$profile->nama_lengkap}}</td>
       <td>{{$profile->pendidikan_terakhir}}</td>
       <td>{{$profile->nomor_telepon}}</td>
+      <td><a href="{{url('hapus/'.$profile->User->id)}}" class="btn btn-sm btn-danger">Hapus</a></td>
+      <td><a href="{{url('edit/'.$profile->User->id)}}" class="btn btn-sm btn-danger">Edit</a></td>
 
     </tr>
     

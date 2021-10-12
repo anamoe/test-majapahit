@@ -74,8 +74,9 @@ class ProfileController extends Controller
 
     public function delete_profile($id){
 
-        profile::delete('user_id',$id);
-        User::destroy($id);
+        profile::where('user_id',$id)->delete();
+        User::where('id',$id)->delete();
+        return redirect('/')->with('succes', 'Hapus Porfil Sukses');
     }
 
 }
