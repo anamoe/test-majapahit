@@ -68,10 +68,10 @@ class ProfileController extends Controller
     }
 
     public function edit_profile($id){
-        $users = profile::where('id',1)->with('User')->first();
-        // return view('edit',compact('users'));
+        $users = profile::where('id',$id)->with('User')->first();
+        return view('edit',compact('users'));
 
-        $users;
+
 
     }
 
@@ -80,7 +80,6 @@ class ProfileController extends Controller
         $request->validate([
     		'email' => 'required',
     		'username' => 'required',
-    		'password' => 'required',
     		'alamat_ktp'=> 'required',
         	'pekerjaan'=> 'required',
         	'nama_lengkap'=> 'required',
@@ -94,8 +93,8 @@ class ProfileController extends Controller
         User::where('id',$id)->update([
         	'email' => $request->email,
     		'name' => $request->username,
-    		'password' => bcrypt($request->password)])
-    		->id;
+    		])
+    		;
 
         profile::where('user_id',$id)->update([
          		'alamat_ktp'=>$request->email,
@@ -105,6 +104,7 @@ class ProfileController extends Controller
         		'nama_lengkap'=>$request->nama_lengkap,
         		'nomor_telepon'=>$request->nomor_telepon,
         ]);
+	
         
         return redirect('/')->with('succes', 'Update Porfil Sukses');
 

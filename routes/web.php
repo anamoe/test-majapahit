@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/edit/{id}', [App\Http\Controllers\ProfileController::class, 'edit_profile']);
+Route::post('/edit/{id}', [App\Http\Controllers\ProfileController::class, 'update_profile']);
 
 
 Route::get('/', [App\Http\Controllers\ProfileController::class, 'index']);
